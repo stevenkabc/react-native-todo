@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {
   Text,
   TextInput,
-  TouchableHighlight,
-  View,
-  StyleSheet
+  TouchableOpacity,
+  View
+
 } from 'react-native';
 
 export class Todo extends Component {
@@ -35,21 +35,20 @@ export class Todo extends Component {
     return (
       <View style={styles.container}>
         <TextInput style={{fontSize: 20}}
-        onChangeText={this.handleChange.bind(this)}
-        onSubmitEditing={() => {this.setState({
-          todos: [...this.state.todos, this.state.newTodo],
-          newTodo: ''});
-          }
-        }
-        value={this.state.newTodo} />
-        {this.state.todos.map( (todo, i) =>
-          <TouchableHighlight key={i+100
-          } onPress={this.handlePress.bind(this,i)}>
-          <Text  key={i} style={styles.welcome} >{todo} </Text>
-          </TouchableHighlight>
+          value={this.state.newTodo}
+          onChangeText={this.handleChange.bind(this)}
+          onSubmitEditing={ () =>
+            this.setState(
+              {todos: [...this.state.todos, this.state.newTodo], newTodo: ''}
+          )} />
 
-        )}
-
+        <View>
+            {this.state.todos.map( (todo, i) => (
+              <TouchableOpacity key={i+100} onPress={this.handlePress.bind(this,i)}>
+                <Text  key={i} style={styles.welcome} >{todo} </Text>
+              </TouchableOpacity>
+            ))}
+        </View>
       </View>
     );
   }
