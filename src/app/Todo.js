@@ -39,15 +39,15 @@ export class Todo extends Component {
           onChangeText={this.handleChange.bind(this)}
           onSubmitEditing={ () =>
             this.setState(
-              {todos: [...this.state.todos, this.state.newTodo], newTodo: ''}
+            {todos: [...this.state.todos, this.state.newTodo], newTodo: ''}
           )} />
 
         <View>
-            {this.state.todos.map( (todo, i) => (
-              <TouchableOpacity key={i+100} onPress={this.handlePress.bind(this,i)}>
-                <Text  key={i} style={styles.welcome} >{todo} </Text>
-              </TouchableOpacity>
-            ))}
+          {this.state.todos.map( (todo, i) => (
+            <TouchableOpacity key={i+100} onPress={this.handlePress.bind(this,i)}>
+              <Text  key={i} style={styles.welcome} >{todo} </Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
     );
