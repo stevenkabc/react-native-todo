@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
   },
   box: {
     backgroundColor: 'yellow',
-    width: width * .5,
-    height: height * .33,
+    width: width * .85,
+    height: height * .85,
     top: 30,
     borderRadius: 30,
     position: 'absolute'

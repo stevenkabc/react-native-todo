@@ -6,10 +6,11 @@ import {
   View
 
 } from 'react-native';
+import {styles} from './styles'
 
 export class Todo extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       todos: ["Walk the cat","Buy Milk", "Brush Teeth","Kill the cat","Get Sleep"],
       newTodo: "",
@@ -31,21 +32,23 @@ export class Todo extends Component {
 
 
   render() {
-    const styles = this.props.styles
     return (
       <View style={styles.container}>
-        <TextInput style={{fontSize: 20}}
-          value={this.state.newTodo}
-          onChangeText={this.handleChange.bind(this)}
-          onSubmitEditing={ () =>
-            this.setState(
-            {todos: [...this.state.todos, this.state.newTodo], newTodo: ''}
-          )} />
+        <View style={styles.box}>
+          <TextInput style={styles.textEdit }
+            value={this.state.newTodo}
+            placeholder={"What's next?"}
+            onChangeText={this.handleChange.bind(this)}
+            onSubmitEditing={ () =>
+              this.setState(
+              {todos: [...this.state.todos, this.state.newTodo], newTodo: ''}
+            )} />
+        </View>
 
-        <View>
+        <View style={styles.container}>
           {this.state.todos.map( (todo, i) => (
-            <TouchableOpacity key={i+100} onPress={this.handlePress.bind(this,i)}>
-              <Text  key={i} style={styles.welcome} >{todo} </Text>
+            <TouchableOpacity style={styles.welcome} key={i+100} onPress={this.handlePress.bind(this,i)}>
+              <Text  key={i} style={styles.text} >{todo} </Text>
             </TouchableOpacity>
           ))}
         </View>
