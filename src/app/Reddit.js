@@ -15,7 +15,8 @@ export class Reddit extends Component {
          Accept: 'application/json'
       })
       .then(res => res.json())
-      .then(data => this.setState({posts: data.data.children}))
+      .then(data =>
+         this.setState({posts: data.data.children}))
 
 
    }

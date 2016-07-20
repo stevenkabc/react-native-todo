@@ -34,12 +34,11 @@ export class Todo extends Component {
   }
 
   handleSubmit(e) {
+    const todos = [...this.state.todos, this.state.newTodo];
       if(this.state.newTodo.trim().length === 0){
         return;
       }
-      this.setState(
-      {todos: [...this.state.todos, this.state.newTodo], newTodo: ''}
-    );
+      // this.setState(  {todos , newTodo: ''} );
   }
 
 
