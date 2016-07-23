@@ -32,12 +32,26 @@ export class Todo extends Component {
       }
     })
     .then((response) => {
+      console.log(response);
+      if (response.status >= 200 && response.status < 300) {
+        return response
+      } else {
+        var error = new Error(response.statusText)
+        error.response = response
+        throw error
+      }
+    })
+    .then((response) => {
       console.log(response)
       return response.json()
     })
     .then(todos => {
       this.setState({todos, newTodo:""});
     })
+    .catch(function(ex) {
+      console.log('parsing failed', ex)
+    })
+
 
 
   }
@@ -51,13 +65,11 @@ export class Todo extends Component {
   handleDeletePress(i) {
     const tempTodos = [...this.state.todos];
     const item = tempTodos[i].id;
-    //  this.setState(
-    //    {
-    //      todos:[...tempTodos.slice(0,i),...tempTodos.slice(i+1)],
-    //      url: `http://10.0.0.180:3000/todos`,
-    //      value: {"id": item},
-    //      verb: "DELETE"
-    //    })
+    this.setState(
+       {
+         todos:[...tempTodos.slice(0,i),...tempTodos.slice(i+1)],
+
+       })
     fetch(`http://10.0.0.180:3000/todos/${item}`,{
       method: 'DELETE',
       body: JSON.stringify({"id": item}),
@@ -90,11 +102,14 @@ export class Todo extends Component {
         }
       })
       .then((response) => {
-        console.log(response)
-        return response.json()
+        const res = response.json();
+        console.log(response,res);
+
+        return res;
       })
-      .then(todos => {
-        this.setState({todos, newTodo:''});
+      .then(zzz => {
+        console.log("todos=",zzz)
+        this.setState({todos: [...this.state.todos,zzz], newTodo:''});
       })
   }
 
@@ -115,7 +130,7 @@ export class Todo extends Component {
         </View>
 
         <View style={styles.listView}>
-          {console.log(Object.keys(this.state.todos))}
+          {console.log(this.state.todos)}
           {this.state.todos.map( (todo, i) => (
             <View style={styles.list} key={i}>
               <TouchableOpacity
