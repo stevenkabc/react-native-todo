@@ -5,16 +5,20 @@
       "id": 1
     },
     {
-      "name": "Buy Milk",
+      "name": "buy milk",
       "id": 2
     },
     {
-      "name": "Walk the Dog",
-      "id": 3
+      "name": "shower",
+      "id": 4
     },
     {
-      "name": "Brush Teeth",
-      "id": 4
+      "name": "walk the dog",
+      "id": 5
+    },
+    {
+      "name": "car wash",
+      "id": 6
     }
   ]
 }
