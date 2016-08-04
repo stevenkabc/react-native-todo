@@ -16,7 +16,7 @@
       return response.json()
     }
 
-    fetch('http://localhost:3000/todos',{
+    fetch('http://10.0.0.180:3000/todos',{
       method: verb,
       body: JSON.stringify({
         operand
