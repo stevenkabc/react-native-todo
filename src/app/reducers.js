@@ -13,15 +13,15 @@ const todos = (state = [], action) => {
 
     case CREATE_TODO:
       return [
+        ...state,
         action.payload,
-        ...state
       ]
 
     case DELETE_TODO:
       const i = action.payload.index;
       const tempTodos = [state.todos];
       const item = state.Todos[i].id;
-      return [{
+      return [ ...state, {
         todos: [...tempTodos.slice(0,i), ...tempTodos.slice(i+1)]
       }];
 

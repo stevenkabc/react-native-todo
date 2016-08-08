@@ -6,10 +6,14 @@ import {
   View,
   Dimensions,
   StyleSheet
-
 } from "react-native";
+import {store} from "./store"
+
+import {TodoForm} from './TodoForm'
 // import {styles} from "./stylesWalkthru"
-const JSON_SERVER = '10.0.0.180:3000'
+// const JSON_SERVER = '10.0.0.180:3000'
+const JSON_SERVER = '192.168.50.140:3000'
+
 export class Todo extends Component {
   constructor() {
     super();
@@ -21,7 +25,6 @@ export class Todo extends Component {
     }
 
   }
-
 
   componentDidMount() {
     fetch(`http://${JSON_SERVER}/todos`,{
@@ -51,9 +54,6 @@ export class Todo extends Component {
     .catch(function(ex) {
       console.log('parsing failed', ex)
     })
-
-
-
   }
 
   handleChange(text) {
@@ -117,17 +117,10 @@ export class Todo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.form}>
-          <TextInput style={styles.input}
-            value={this.state.newTodo}
-            placeholder={"What's next?"}
-            onChangeText={this.handleChange.bind(this)}
-            onSubmitEditing={this.handleSubmit.bind(this)}
-          />
-          <TouchableOpacity style={styles.button} onPress={this.handleSubmit.bind(this)} >
-            <Text style={styles.buttonText}>Make</Text>
-          </TouchableOpacity>
-        </View>
+      <TodoForm value={this.state.newTodo}
+        handleSubmit={this.handleSubmit.bind(this)}
+        handleChange={this.handleChange.bind(this)}
+      ></TodoForm>
 
         <View style={styles.listView}>
           {console.log(this.state.todos)}
@@ -154,37 +147,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "teal"
   },
-  form: {
-    flexDirection: "row",
 
-  },
-  input: {
-    flex: 0.7,
-    paddingVertical: 10,
-    fontSize: 20
-  },
-
-  // button: {
-  //   flex: 0.3,
-  //   backgroundColor: "orange",
-  //   borderRadius: 10,
-  //   height: 30,
-  //   alignSelf: "center",
-  //   justifyContent: "center",
-  button: {
-    flex: 0.3,
-    borderWidth: 1,
-    borderColor: "blue",
-    borderRadius: 4,
-    top: 25,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  buttonText: {
-    fontSize: 24,
-    fontWeight: "bold"
-  },
   listView: {
     marginTop: 60
   },
