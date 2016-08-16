@@ -12,7 +12,7 @@ import {store} from "./store"
 import {TodoForm} from './TodoForm'
 // import {styles} from "./stylesWalkthru"
 // const JSON_SERVER = '10.0.0.180:3000'
-const JSON_SERVER = '192.168.50.140:3000'
+const JSON_SERVER = '172.20.42.42:3000'
 
 export class Todo extends Component {
   constructor() {
