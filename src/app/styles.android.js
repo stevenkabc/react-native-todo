@@ -11,10 +11,10 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   box: {
-    margin: 40,
-    height: 49,
+    margin: 20,
+    height: 29,
     width: width * .80,
-    borderRadius: 40,
+    borderRadius: 20,
     backgroundColor: 'white'
 
   },
