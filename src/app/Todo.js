@@ -62,7 +62,7 @@ export class Todo extends Component {
           {this.state.todos.map( (todo, i) => (
             <View style={styles.list} key={i}>
               <TouchableOpacity
-                onPress={this.handleDeletePress.bind(this,i)}>
+                onLongPress={this.handleDeletePress.bind(this,i)}>
                 <Text  style={styles.listText}>{todo}</Text>
               </TouchableOpacity>
 
