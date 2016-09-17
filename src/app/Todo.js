@@ -9,13 +9,15 @@ import {
 
 } from "react-native";
 // import {styles} from "./stylesWalkthru"
+// const JSON_SERVER = '10.0.0.180:3000'
+const JSON_SERVER = '172.20.42.42:3000'
 
 export class Todo extends Component {
   constructor() {
     super();
     this.state = { todos: [],
       newTodo: "",
-      url: "http://10.0.0.180:3000/todos",
+      url: "http://${JSON_SERVER}/todos",
       verb: "GET"
 
     }
@@ -24,7 +26,7 @@ export class Todo extends Component {
 
 
   componentDidMount() {
-    fetch('http://10.0.0.180:3000/todos',{
+    fetch(`http://${JSON_SERVER}/todos`,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -70,7 +72,7 @@ export class Todo extends Component {
          todos:[...tempTodos.slice(0,i),...tempTodos.slice(i+1)],
 
        })
-    fetch(`http://10.0.0.180:3000/todos/${item}`,{
+    fetch(`http://${JSON_SERVER}/todos/${item}`,{
       method: 'DELETE',
       body: JSON.stringify({"id": item}),
       headers: {
@@ -93,7 +95,7 @@ export class Todo extends Component {
       if(newTodo.length === 0){
         return;
       }
-      fetch('http://10.0.0.180:3000/todos',{
+      fetch(`http://${JSON_SERVER}/todos`,{
         method: 'POST',
         body: JSON.stringify({"name": newTodo}),
         headers: {
